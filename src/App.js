@@ -1,0 +1,37 @@
+import React from 'react';
+import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import Login from './pages/Login';
+import Album from './pages/Album';
+import Search from './pages/Search';
+import Favorites from './pages/Favorites';
+import Profile from './pages/Profile';
+import ProfileEdit from './pages/ProfileEdit';
+import NotFound from './pages/NotFound';
+
+class App extends React.Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            component={ (propsRoute) => <Login { ...propsRoute } /> }
+          />
+          <Route
+            exact
+            path="/album/:id"
+            render={ (propsRoute) => <Album { ...propsRoute } /> }
+          />
+          <Route exact path="/search" component={ Search } />
+          <Route exact path="/favorites" component={ Favorites } />
+          <Route exact path="/profile" component={ Profile } />
+          <Route exact path="/profile/edit" component={ ProfileEdit } />
+          <Route exact path="*" component={ NotFound } />
+        </Switch>
+      </BrowserRouter>
+    );
+  }
+}
+
+export default App;
